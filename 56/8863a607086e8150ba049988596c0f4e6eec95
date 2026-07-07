@@ -1,0 +1,28 @@
+pyproject.toml
+  s_661e9c38a7de30::t_b9acfead60b56b 7
+README.md
+  s_661e9c38a7de30::t_6fabeff3c91445 138-147
+  s_661e9c38a7de30::t_dbb81e9522cdf3 173
+  s_661e9c38a7de30::t_06361fd3b3c774 4
+  s_661e9c38a7de30::t_c7a671b98cccb4 62-72
+  s_661e9c38a7de30::t_79729d1723ea1d 119
+CHANGELOG.md
+  s_661e9c38a7de30::t_c50d48490a1fa6 5,7-12
+  s_661e9c38a7de30::t_8e2f347a8d3d6a 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "568863a607086e8150ba049988596c0f4e6eec95",
+  "prompts": {},
+  "sessions": {
+    "s_661e9c38a7de30": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "95c7a856-4263-4ebc-84f6-3506044621ae",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
