@@ -11,7 +11,7 @@ def supports_color(file: object) -> bool:
         return True
     return (
         hasattr(file, "isatty")
-        and file.isatty()  # type: ignore[union-attr]
+        and file.isatty()
         and os.environ.get("TERM", "") != "dumb"
     )
 

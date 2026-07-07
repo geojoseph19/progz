@@ -2,6 +2,11 @@
 
 All notable changes to progz are documented here.
 
+## [0.1.1] - 2026-07-07
+
+### Fixed
+- Remove unused `type: ignore` comment in `terminal.py` (mypy strict compliance)
+
 ## [0.1.0] - 2026-07-07
 
 ### Added
