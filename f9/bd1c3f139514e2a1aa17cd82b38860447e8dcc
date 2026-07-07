@@ -1,0 +1,19 @@
+pyproject.toml
+  s_087622d67917cc::t_f586422c337652 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "f9bd1c3f139514e2a1aa17cd82b38860447e8dcc",
+  "prompts": {},
+  "sessions": {
+    "s_087622d67917cc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "447f9ddb-b6b6-4d7b-942f-82644aabaff8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
