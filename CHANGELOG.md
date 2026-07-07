@@ -2,12 +2,16 @@
 
 All notable changes to progz are documented here.
 
+## [0.1.2] - 2026-07-07
+
+### Documentation
+- Add PyPI version badge to README
+- Fix `Style` field types in README (`tuple` → `tuple[int, int, int]`, full `spinner_frames` list)
+- Add `set_description()` example
+- Note `file=sys.stdout` option on `ProgressBar`
+- Add `mypy` to Contributing steps
+
 ## [0.1.1] - 2026-07-07
-
-### Fixed
-- Remove unused `type: ignore` comment in `terminal.py` (mypy strict compliance)
-
-## [0.1.0] - 2026-07-07
 
 ### Added
 - `ProgressBar` with context manager and manual API

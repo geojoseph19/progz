@@ -1,6 +1,7 @@
 # progz
 
 [![CI](https://github.com/geojoseph19/progz/actions/workflows/ci.yml/badge.svg)](https://github.com/geojoseph19/progz/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/progz)](https://pypi.org/project/progz/)
 
 Lightweight, dependency-free terminal progress bar with unique, customizable styles.
 
@@ -58,6 +59,17 @@ with ProgressBar(total=100, description="loading") as bar:
         bar.update(description=f"item {i}")
 ```
 
+### Update description without advancing
+
+```python
+with ProgressBar(total=100) as bar:
+    bar.set_description("warming up")
+    time.sleep(1)
+    for item in items:
+        process(item)
+        bar.update()
+```
+
 ### Manual (no context manager)
 
 ```python
@@ -104,7 +116,7 @@ with ProgressBar(total=100, style=style) as bar:
 | `total`       | `int`          | required       | Number of steps to completion   |
 | `description` | `str`          | `""`           | Text shown to the right of bar  |
 | `style`       | `Style \| None` | `SHIMMER`     | Visual style configuration      |
-| `file`        | `TextIO \| None`| `sys.stderr`  | Output stream                   |
+| `file`        | `TextIO \| None`| `sys.stderr`  | Output stream (pass `sys.stdout` to print inline) |
 
 #### Methods
 
@@ -123,16 +135,16 @@ with ProgressBar(total=100, style=style) as bar:
 ```python
 @dataclass
 class Style:
-    bar_width: int = 24           # characters wide
-    speed: float = 0.6            # shimmer sweep cycles/sec
-    filled_char: str = "━"        # character for filled portion
-    empty_char: str = "─"         # character for empty portion
-    min_brightness: int = 80      # grey floor (0–255)
-    brightness_range: int = 175   # grey range above floor
-    empty_rgb: tuple = (60,60,60) # empty zone color
-    show_spinner: bool = True     # braille spinner before bar
-    spinner_color_rgb: tuple = (0,200,200)
-    spinner_frames: tuple = ("⠋", "⠙", "⠹", ...)
+    bar_width: int = 24                              # characters wide
+    speed: float = 0.6                               # shimmer sweep cycles/sec
+    filled_char: str = "━"                           # character for filled portion
+    empty_char: str = "─"                            # character for empty portion
+    min_brightness: int = 80                         # grey floor (0–255)
+    brightness_range: int = 175                      # grey range above floor
+    empty_rgb: tuple[int, int, int] = (60, 60, 60)  # empty zone color
+    show_spinner: bool = True                        # braille spinner before bar
+    spinner_color_rgb: tuple[int, int, int] = (0, 200, 200)
+    spinner_frames: tuple[str, ...] = ("⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏")
 ```
 
 ### Pre-defined styles
@@ -158,7 +170,7 @@ class Style:
 
 1. Fork the repo
 2. `pip install -e ".[dev]"`
-3. `pytest`
+3. `pytest && mypy src/progz`
 4. Submit a PR
 
 ---
