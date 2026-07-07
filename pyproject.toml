@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=71"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "progz"
+version = "0.1.1"
+description = "Lightweight, dependency-free terminal progress bar with unique, customizable styles"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "Geo Joseph", email = "geodesignx@gmail.com"}]
+requires-python = ">=3.10"
+keywords = ["progress", "bar", "terminal", "cli", "animation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Terminals",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov", "mypy"]
+
+[project.urls]
+Homepage = "https://github.com/geojoseph19/progz"
+Repository = "https://github.com/geojoseph19/progz"
+Issues = "https://github.com/geojoseph19/progz/issues"
+Changelog = "https://github.com/geojoseph19/progz/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+progz = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.run]
+source = ["progz"]
+
+[tool.mypy]
+strict = true
