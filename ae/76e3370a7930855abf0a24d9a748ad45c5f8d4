@@ -1,0 +1,151 @@
+README.md
+  s_c92108d6129639::t_6d859cf8a04614 3-4
+  s_5c113aef39f8c4::t_0e6ba160a25bf3 5
+  s_0beca5db7501eb::t_0ac64da9aa8766 17
+  s_0beca5db7501eb::t_af5b9c711bda80 22
+  s_0beca5db7501eb::t_caf393228c2722 11
+  s_20a08c802832aa::t_f95eae785dbcfb 135
+  s_5c113aef39f8c4::t_176abaabb1f9d9 142
+  s_c92108d6129639::t_1691b70abff27a 1-2
+  s_0beca5db7501eb::t_5f75552b5cd917 12-16
+  s_0beca5db7501eb::t_3865007deb0a71 18-21
+  s_5c113aef39f8c4::t_5bc9c281f3a6a7 143-145
+  s_c92108d6129639::t_2070855e935045 6-10,23-134,136-141,146-168
+CHANGELOG.md
+  s_0beca5db7501eb::t_6cdc7e434d72c3 10-11
+  s_0beca5db7501eb::t_ff37637314a2d4 5
+  s_0beca5db7501eb::t_20e21516c35795 13
+  s_0beca5db7501eb::t_676bd28aec5ce0 2-4
+  s_0beca5db7501eb::t_6ff57ba565ef76 6-9
+  s_0beca5db7501eb::t_3d5ce523012a6c 12
+  s_0beca5db7501eb::t_d2f299dd8efaec 14
+  s_0beca5db7501eb::t_3aa6382be15c4f 1
+tests/test_terminal.py
+  s_20a08c802832aa::t_cc2f1ce2708c2c 1-26
+pyproject.toml
+  s_20a08c802832aa::t_9e367cad6cbb8d 11,30,41-49
+  s_c92108d6129639::t_77e00228e2c422 33-36
+  s_5c113aef39f8c4::t_3684dcfdeb4713 8
+  s_5c113aef39f8c4::t_17597560455ce5 13
+  s_5c113aef39f8c4::t_bdfc98665d5933 5-7
+  s_20a08c802832aa::t_631469fbba6356 50-52
+  s_c92108d6129639::t_d54ae5640a0d1f 1-4,9-10,12,14-29,31-32,37-40
+src/progz/terminal.py
+  s_20a08c802832aa::t_bbb0ced31f9542 8-11
+  s_20a08c802832aa::t_64f9616174c933 5-7
+  s_20a08c802832aa::t_a02a57a1d1d183 12-14
+  s_20a08c802832aa::t_12df14fdc7cc72 1-4,15-25
+.github/workflows/publish.yml
+  s_c92108d6129639::t_91f4d9176ec94a 21-22
+  s_20a08c802832aa::t_33fb167cbb5f05 1-20,23-25
+src/progz/progress.py
+  s_8de3a77c2af1b1::t_0752b39fa6fac0 1
+  s_0beca5db7501eb::t_ada0b9b2fa5120 15
+  s_8de3a77c2af1b1::t_08f5aa62212aca 13
+  s_e2ec5947b48e0a::t_b5b852636eae34 80-81,111
+  s_8de3a77c2af1b1::t_9c1d6464836d13 2-4,10-12
+  s_e2ec5947b48e0a::t_83695bac94c769 82-84,108-110
+  s_e2ec5947b48e0a::t_d98fadfe97c802 112-114
+  s_8de3a77c2af1b1::t_cfe1ae2bb9cea1 5-9,14,16-79,85-107,115-126
+LICENSE
+  s_20a08c802832aa::t_6d6c3bfc580b1d 3
+  s_20a08c802832aa::t_fdeaf8c562b3f9 1-2
+  s_20a08c802832aa::t_f706e9f4dc4343 4-6
+  s_20a08c802832aa::t_0cc9f0e96e03d2 7-21
+.gitignore
+  s_c92108d6129639::t_bf3a869c8c8560 12-13
+  s_c92108d6129639::t_7535b24b6e20a2 9-11
+  s_c92108d6129639::t_af49c22aafef16 1-8
+src/progz/renderer.py
+  s_8de3a77c2af1b1::t_84b69e15527f4d 19
+  s_8de3a77c2af1b1::t_89be677a3b0f11 1
+  s_8de3a77c2af1b1::t_1b5fd86cb3fa9b 2-4,16-18
+  s_8de3a77c2af1b1::t_6ccaf516914c79 20-22
+  s_8de3a77c2af1b1::t_3e594d183d9476 5-15,23-56
+src/progz/__init__.py
+  s_8de3a77c2af1b1::t_d7d9ae867cb589 1
+  s_20a08c802832aa::t_757412fa062853 3-9
+  s_8de3a77c2af1b1::t_1b8580b0b9cad8 2
+src/progz/styles.py
+  s_20a08c802832aa::t_0343a57cf4e6c9 6
+  s_5c113aef39f8c4::t_50d298425ca20f 8
+  s_20a08c802832aa::t_2c0afc0ee46c4b 3-5
+  s_5c113aef39f8c4::t_9e2877a936129c 9-11
+  s_20a08c802832aa::t_583215924c0f26 1-2,7,12-30
+tests/test_rendering.py
+  s_c92108d6129639::t_ecd99916b38cd6 23,37
+  s_c92108d6129639::t_e81ff527bca5df 20-22
+  s_c92108d6129639::t_0ed9ddf48aecf5 24-26,34-36
+  s_c92108d6129639::t_9342d77e1bcda5 38-40
+  s_c92108d6129639::t_add488e2e88311 1-19,27-33,41-104
+.github/workflows/ci.yml
+  s_20a08c802832aa::t_7b6ae1e9bcf351 1-25
+tests/test_progress.py
+  s_c92108d6129639::t_b759142c9d07fa 30,41,82-84,110,118,130-146
+  s_c92108d6129639::t_7111127fb846f3 8
+  s_c92108d6129639::t_f1098b5dbda713 5-7
+  s_c92108d6129639::t_238e787ac44cbb 9-11,27-29
+  s_c92108d6129639::t_5101c1f5cbbc41 31-33,38-40
+  s_c92108d6129639::t_defbda8364d8e6 42-44,79-81
+  s_c92108d6129639::t_66ab6387ef938d 85-87,107-109
+  s_c92108d6129639::t_339629e657087d 111-113,115-117
+  s_c92108d6129639::t_56070e4f3eb2d7 119-121,127-129
+  s_c92108d6129639::t_94e22c924c3b9e 147-149
+  s_c92108d6129639::t_0932ef4e397d49 1-4,12-26,34-37,45-78,88-106,114,122-126,150-158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ae76e3370a7930855abf0a24d9a748ad45c5f8d4",
+  "prompts": {},
+  "sessions": {
+    "s_0beca5db7501eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2c828d26-e156-4dd3-ae00-cd62854b68a5",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_20a08c802832aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b82cf4ca-f273-4c29-b855-a55c35a90e62",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_5c113aef39f8c4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "baf2dda2-0c33-476f-86e0-d1d2f55652d0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_8de3a77c2af1b1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e0c04357-c144-4a9b-b812-6f537ff8752b",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_c92108d6129639": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c17006eb-6e21-4b7d-8d99-ef64ed259aa5",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_e2ec5947b48e0a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ef8a2676-0b0c-4d4a-9a02-0ea8f4099473",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
