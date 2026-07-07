@@ -1,0 +1,21 @@
+CHANGELOG.md
+  s_087622d67917cc::t_e14c08d998568c 5-9
+src/progz/terminal.py
+  s_087622d67917cc::t_751a97c6a35ca2 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "40c974ba24e1caab8f4d07b38eb76643bfafb38b",
+  "prompts": {},
+  "sessions": {
+    "s_087622d67917cc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "447f9ddb-b6b6-4d7b-942f-82644aabaff8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
