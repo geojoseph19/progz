@@ -2,7 +2,7 @@
 
 import pytest
 
-from progz.styles import ASCII, SHIMMER, Style
+from progz.styles import ASCII, SHIMMER, Component, Style
 
 
 class TestStyleDefaults:
@@ -14,17 +14,17 @@ class TestStyleDefaults:
         assert s.empty_char == "─"
         assert s.min_brightness == 80
         assert s.brightness_range == 175
-        assert s.show_spinner is True
+        assert Component.SPINNER in s.layout
 
     def test_ascii_preset_chars(self):
         assert ASCII.filled_char == "#"
         assert ASCII.empty_char == "-"
-        assert ASCII.show_spinner is False
+        assert Component.SPINNER not in ASCII.layout
 
     def test_shimmer_preset_chars(self):
         assert SHIMMER.filled_char == "━"
         assert SHIMMER.empty_char == "─"
-        assert SHIMMER.show_spinner is True
+        assert Component.SPINNER in SHIMMER.layout
 
 
 class TestStyleCustomization:
@@ -54,6 +54,38 @@ class TestStyleCustomization:
         s1 = Style(bar_width=10)
         s2 = Style(bar_width=20)
         assert s1.bar_width != s2.bar_width
+
+
+class TestLayout:
+    def test_default_layout_order(self):
+        s = Style()
+        assert s.layout == (Component.SPINNER, Component.BAR, Component.DESCRIPTION)
+
+    def test_custom_layout_no_spinner(self):
+        s = Style(layout=(Component.BAR, Component.DESCRIPTION))
+        assert Component.SPINNER not in s.layout
+        assert Component.BAR in s.layout
+
+    def test_custom_layout_with_percent(self):
+        s = Style(layout=(Component.SPINNER, Component.BAR, Component.PERCENT, Component.DESCRIPTION))
+        assert s.layout.index(Component.PERCENT) > s.layout.index(Component.BAR)
+
+    def test_text_layout(self):
+        s = Style(layout=(Component.TEXT, Component.DESCRIPTION), fill_text="Loading")
+        assert Component.BAR not in s.layout
+        assert Component.TEXT in s.layout
+        assert s.fill_text == "Loading"
+
+    def test_layout_immutable(self):
+        s = Style()
+        with pytest.raises(Exception):
+            s.layout = (Component.BAR,)  # type: ignore[misc]
+
+    def test_ascii_layout(self):
+        assert ASCII.layout == (Component.BAR, Component.DESCRIPTION)
+
+    def test_shimmer_layout(self):
+        assert SHIMMER.layout == (Component.SPINNER, Component.BAR, Component.DESCRIPTION)
 
 
 class TestStylePresets:

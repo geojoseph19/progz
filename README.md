@@ -17,6 +17,7 @@ Zero runtime dependencies. Pure Python 3.10+ stdlib.
 
 - 24-bit ANSI RGB rendering, no dependencies
 - Braille spinner tied to elapsed time
+- Composable layout: stack spinner, bar, text, percent, description in any order
 - ASCII fallback for dumb terminals
 - Context manager and manual API
 - Fully customizable via `Style` dataclass
@@ -133,18 +134,42 @@ with ProgressBar(total=100, style=style) as bar:
 ### `Style`
 
 ```python
-@dataclass
+@dataclass(frozen=True)
 class Style:
+    layout: tuple[Component, ...] = (Component.SPINNER, Component.BAR, Component.DESCRIPTION)
     bar_width: int = 24                              # characters wide
     speed: float = 0.6                               # shimmer sweep cycles/sec
     filled_char: str = "━"                           # character for filled portion
     empty_char: str = "─"                            # character for empty portion
-    min_brightness: int = 80                         # grey floor (0–255)
+    fill_text: str = ""                              # string rendered by Component.TEXT
+    min_brightness: int = 80                         # grey floor (0 to 255)
     brightness_range: int = 175                      # grey range above floor
     empty_rgb: tuple[int, int, int] = (60, 60, 60)  # empty zone color
-    show_spinner: bool = True                        # braille spinner before bar
     spinner_color_rgb: tuple[int, int, int] = (0, 200, 200)
     spinner_frames: tuple[str, ...] = ("⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏")
+```
+
+### `Component`
+
+The `layout` tuple selects which components render, and in what order (left to
+right). Omit a component to hide it. Import from `progz`.
+
+| Component               | Renders                                              |
+|-------------------------|------------------------------------------------------|
+| `Component.SPINNER`     | Animated braille frame; skipped when color is off    |
+| `Component.BAR`         | Fill bar tied to progress percentage                 |
+| `Component.TEXT`        | `fill_text` string with a shimmer wave               |
+| `Component.PERCENT`     | Percentage readout, e.g. ` 42%`                      |
+| `Component.DESCRIPTION` | The `description` label, rendered unstyled           |
+
+```python
+from progz import ProgressBar, Style, Component
+
+# Bar with a percentage readout, no spinner
+style = Style(layout=(Component.BAR, Component.PERCENT, Component.DESCRIPTION))
+
+with ProgressBar(total=100, style=style) as bar:
+    ...
 ```
 
 ### Pre-defined styles
@@ -152,17 +177,17 @@ class Style:
 | Name      | Description                        |
 |-----------|------------------------------------|
 | `SHIMMER` | Unique sine-wave brightness gradient, Unicode chars (default) |
-| `ASCII`   | `#`/`-` chars, no spinner          |
+| `ASCII`   | `#`/`-` chars, `(BAR, DESCRIPTION)` layout (no spinner) |
 
 ---
 
 ## Performance Notes
 
 - No allocations outside of `update()` calls
-- `render_frame()` is pure — no I/O, no side effects
-- No background threads — redraws only on `update()`
+- `render_frame()` is pure: no I/O, no side effects
+- No background threads; redraws only on `update()`
 - Uses `\r\033[2K` to overwrite in color mode; space-padding in ASCII mode
-- 24-bit RGB via raw ANSI sequences — no terminal library needed
+- 24-bit RGB via raw ANSI sequences, no terminal library needed
 
 ---
 
