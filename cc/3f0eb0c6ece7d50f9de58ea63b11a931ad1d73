@@ -1,0 +1,78 @@
+README.md
+  s_b03f7af7375495::t_c0522f326b11b9 137,139,144-145,152-174,180
+  s_b03f7af7375495::t_e2349faecb28fb 187-188,190
+  s_b03f7af7375495::t_2edaea2b101a2b 20
+src/progz/styles.py
+  s_f031ff210389bd::t_9ace7e1fe387b2 3
+  s_661e9c38a7de30::t_a8cd0906d91b30 4,23,26-27,57
+  s_b03f7af7375495::t_000e821b078e38 37-39,43,47,49
+  s_b03f7af7375495::t_fd1a8749b5dd2d 16,20
+  s_c7db7d4bccccb8::t_8f606a7e4cae74 7-15,17-19,21-22,24-25,28-29,34-36,40-42,44-46,48,50,70
+  s_f031ff210389bd::t_b0d6d706b77d43 52,60-62
+  s_f031ff210389bd::t_2336bdb3fbca73 5-6
+tests/test_styles.py
+  s_c7db7d4bccccb8::t_42d3257c6de118 5,17,22,27,59-76,79-80,82-88
+  s_661e9c38a7de30::t_d6f967f7825545 77-78,81,89-90
+examples/layouts.py
+  s_f031ff210389bd::t_54df275f77ea91 5
+  s_b03f7af7375495::t_265477add8a288 1
+  s_c7db7d4bccccb8::t_37898d553cdc5c 2-4,6-20,22-26,28-32,34-38,40-42,44,46-54,56-60,62-69
+  s_b03f7af7375495::t_018017e4703e86 21,27,33,39,43,45,55,61
+src/progz/__init__.py
+  s_c7db7d4bccccb8::t_568cf0408728fc 6,8
+tests/test_rendering.py
+  s_661e9c38a7de30::t_abcf90118ada35 98,100-103,105-108,110-113,115-118,120-124,126-127,205
+  s_c7db7d4bccccb8::t_ae0af5dd476f1a 6,85,88,92-97,99,104,109,114,119,125,128,141-162,172-203
+  s_c7db7d4bccccb8::t_0ea77f99c24dc2 204
+  s_b03f7af7375495::t_43b5216e6642f9 163-171
+  s_f031ff210389bd::t_995168e2cb90d7 129-140
+CHANGELOG.md
+  s_b03f7af7375495::t_d6227699380fbc 5-18
+src/progz/renderer.py
+  s_c7db7d4bccccb8::t_f299950838aeae 5,20-21,24-51,55-70,80-83,85,132-133
+  s_f031ff210389bd::t_6fdd0bd387fed4 134
+  s_661e9c38a7de30::t_2bd8392b3785e9 74-75,86-93,116-130
+  s_f031ff210389bd::t_918f92894f6413 76-79
+  s_f031ff210389bd::t_7da784faccddc4 94
+  s_b03f7af7375495::t_607947c781419e 52-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "cc3f0eb0c6ece7d50f9de58ea63b11a931ad1d73",
+  "prompts": {},
+  "sessions": {
+    "s_661e9c38a7de30": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "95c7a856-4263-4ebc-84f6-3506044621ae",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_b03f7af7375495": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3f86baf-dba0-41d6-b810-8f9eaddf8814",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_c7db7d4bccccb8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "512f9397-9000-4bb2-9cd4-25ac8d371dc3",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_f031ff210389bd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ea212ff3-6d59-41c8-b5ed-40d0a8d6db69",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
