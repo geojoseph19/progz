@@ -2,6 +2,7 @@
 
 import sys
 import time
+from types import TracebackType
 from typing import TextIO
 
 from .renderer import render_frame
@@ -118,9 +119,30 @@ class ProgressBar:
 
         self._file.flush()
 
+    def _abandon(self) -> None:
+        """Stop drawing without forcing completion; move to the next line."""
+        self._file.write("\n")
+        self._file.flush()
+        self._finished = True
+
     def __enter__(self) -> "ProgressBar":
         return self
 
-    def __exit__(self, *args: object) -> None:
-        if not self._finished:
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc: BaseException | None,
+        tb: TracebackType | None,
+    ) -> None:
+        """Finish the bar on clean exit.
+
+        If the block raised, the bar is left at its current progress
+        instead of being forced to 100%, so failed runs do not display
+        as complete.
+        """
+        if self._finished:
+            return
+        if exc_type is None:
             self.finish()
+        else:
+            self._abandon()

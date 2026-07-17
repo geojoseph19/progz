@@ -32,9 +32,9 @@ class TestBarContent:
         assert out.startswith("#" * half)
         assert out.endswith("-" * (ASCII.bar_width - half))
 
-    def test_zero_total_empty(self):
+    def test_zero_total_renders_complete(self):
         out = _render(0, 0)
-        assert out == "-" * ASCII.bar_width
+        assert out == "#" * ASCII.bar_width
 
     def test_completed_exceeds_total_full(self):
         out = _render(999, 10)

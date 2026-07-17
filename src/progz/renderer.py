@@ -74,7 +74,8 @@ def render_frame(
 
 
 def _ratio(completed: int, total: int) -> float:
-    return min(1.0, completed / total) if total > 0 else 0.0
+    # A zero-total bar has no work to do, so it is trivially complete.
+    return min(1.0, completed / total) if total > 0 else 1.0
 
 
 def _render_spinner(parts: list[str], style: Style, elapsed: float) -> None:

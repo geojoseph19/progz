@@ -126,6 +126,21 @@ class TestContextManager:
         assert bar._finished
         assert f.getvalue().endswith("\n")
 
+    def test_exception_does_not_force_completion(self):
+        f = io.StringIO()
+        try:
+            with ProgressBar(total=5, file=f) as bar:
+                bar._use_color = False
+                bar.update(2)
+                raise ValueError("test error")
+        except ValueError:
+            pass
+        assert bar.completed == 2
+        # last drawn frame reflects 2/5 progress, not a full bar
+        last_frame = f.getvalue().rstrip("\n").rsplit("\r", 1)[-1]
+        assert "━" * SHIMMER.bar_width not in last_frame
+        assert "─" in last_frame
+
 
 class TestDraw:
     def test_color_path_uses_erase_line(self):

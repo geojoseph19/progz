@@ -16,6 +16,10 @@ All notable changes to progz are documented here.
 ### Removed
 - `Style.show_spinner`. Use `layout` instead.
 
+### Fixed
+- An exception inside a `with ProgressBar(...)` block no longer forces the bar to 100%. The bar stays at its current progress and moves to the next line, so failed runs do not display as complete.
+- A bar with `total=0` now renders as complete (full bar, 100%) instead of empty at 0%.
+
 ## [0.1.2] - 2026-07-07
 
 ### Documentation

@@ -1,4 +1,4 @@
-# progz
+# ProgZ
 
 [![CI](https://github.com/geojoseph19/progz/actions/workflows/ci.yml/badge.svg)](https://github.com/geojoseph19/progz/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/progz)](https://pypi.org/project/progz/)
@@ -161,6 +161,10 @@ right). Omit a component to hide it. Import from `progz`.
 | `Component.TEXT`        | `fill_text` string with a shimmer wave               |
 | `Component.PERCENT`     | Percentage readout, e.g. ` 42%`                      |
 | `Component.DESCRIPTION` | The `description` label, rendered unstyled           |
+
+Note: a layout containing only `Component.SPINNER` renders nothing when
+color is off (for example in CI or with `NO_COLOR` set). Include `BAR`,
+`PERCENT`, or `DESCRIPTION` if output must be visible without color.
 
 ```python
 from progz import ProgressBar, Style, Component
