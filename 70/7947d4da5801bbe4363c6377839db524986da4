@@ -1,0 +1,32 @@
+tests/test_rendering.py
+  s_dc2e68ab85b347::t_76a869bf783ce5 35,37
+CHANGELOG.md
+  s_dc2e68ab85b347::t_62b80d88474847 19-22
+src/progz/renderer.py
+  s_dc2e68ab85b347::t_376afbdc526126 77-78
+src/progz/progress.py
+  s_dc2e68ab85b347::t_c0ae801b428166 122-127,131-145,147-148
+  s_dc2e68ab85b347::t_1b9fcea5f6d4e9 5
+README.md
+  s_dc2e68ab85b347::t_958adf3fe3593d 165-168
+  s_dc2e68ab85b347::t_835c35d1301859 1
+tests/test_progress.py
+  s_dc2e68ab85b347::t_72d95de11d6c60 141-142
+  s_dc2e68ab85b347::t_12ede6c1680898 129-140,143
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "707947d4da5801bbe4363c6377839db524986da4",
+  "prompts": {},
+  "sessions": {
+    "s_dc2e68ab85b347": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e2b88fab-19de-4652-a2f5-c8cbb9fc6009",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
