@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "progz"
-version = "0.1.2"
+version = "1.0.0"
 description = "Lightweight, dependency-free terminal progress bar with unique, customizable styles"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -12,7 +12,7 @@ authors = [{name = "Geo Joseph", email = "geodesignx@gmail.com"}]
 requires-python = ">=3.10"
 keywords = ["progress", "bar", "terminal", "cli", "animation"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -27,7 +27,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "pytest-cov", "mypy"]
+dev = ["pytest>=8", "pytest-cov", "mypy", "hypothesis"]
 
 [project.urls]
 Homepage = "https://github.com/geojoseph19/progz"
