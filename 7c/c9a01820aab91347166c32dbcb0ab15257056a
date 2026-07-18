@@ -1,0 +1,24 @@
+src/progz/progress.py
+  s_e4b4f7bea590c6::t_f8b3ce4e9b14b3 71
+  s_e4b4f7bea590c6::t_a0417d89b91d0e 23
+  s_e4b4f7bea590c6::t_df7731b596efac 42,44-45
+src/progz/styles.py
+  s_e4b4f7bea590c6::t_8372fdd4253ef6 40-56
+  s_e4b4f7bea590c6::t_97723c3bbef4d4 7,13-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "7cc9a01820aab91347166c32dbcb0ab15257056a",
+  "prompts": {},
+  "sessions": {
+    "s_e4b4f7bea590c6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c926b317-e78f-46ca-8fdc-7ffff72b5e96",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
