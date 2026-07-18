@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "progz"
-version = "0.1.2"
+version = "0.2.0"
 description = "Lightweight, dependency-free terminal progress bar with unique, customizable styles"
 readme = "README.md"
 license = {file = "LICENSE"}
