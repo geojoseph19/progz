@@ -1,0 +1,27 @@
+src/progz/styles.py
+  s_709545ffb762ac::t_acab8ff35cab33 144-164
+  s_709545ffb762ac::t_821acb79c2dada 15-16,18-19,21-25
+  s_709545ffb762ac::t_d79d34b7aad629 68-70
+  s_709545ffb762ac::t_a1347255ba021e 41-44
+  s_709545ffb762ac::t_aba246e3bcebfe 123
+src/progz/renderer.py
+  s_709545ffb762ac::t_985468f211dc14 5,12,17,24-27,45-48,70-84,91-116,154-165,176-183,187-188,191,193-196,199-233,251-288
+src/progz/progress.py
+  s_709545ffb762ac::t_150d0c0bb4a43f 3,9-10,13-15,38,42-43,48-50,54-59,61,67-69,71-74,84-85,89,97-100,103,105-109,115-132,134-138,141-150,153-166,170,174,177-182,190-194,198-205,209-215
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "160b1de1dc70553f6051645b9c6d95863639d7f1",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
