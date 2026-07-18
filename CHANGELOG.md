@@ -2,7 +2,7 @@
 
 All notable changes to progz are documented here.
 
-## [0.2.0] - 2026-07-18
+## [1.0.0] - 2026-07-18
 
 ### Added
 - `track()`: one-line iteration wrapper. Infers `total` via `len()`, falls back to indeterminate mode, always leaves the bar in a final state.
