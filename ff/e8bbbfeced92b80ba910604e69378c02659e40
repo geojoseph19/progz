@@ -1,0 +1,21 @@
+examples/presets.py
+  s_709545ffb762ac::t_fbed07034255c0 1-17
+examples/track.py
+  s_709545ffb762ac::t_a695b483545d46 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "ffe8bbbfeced92b80ba910604e69378c02659e40",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "unknown"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
