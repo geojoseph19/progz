@@ -1,0 +1,46 @@
+pyproject.toml
+  s_b6b0a0bb69769e::t_e34c796edb024c 7
+README.md
+  s_709545ffb762ac::t_f85c626783cccd 179,346-372,378-382,384-386,389-390
+  s_709545ffb762ac::t_2adad664f59094 242-249,251-258,266,269
+  s_709545ffb762ac::t_0cb58929a7043d 20,23,25-31,71-77,79-80
+  s_709545ffb762ac::t_3bdfc72900097e 8-9
+  s_709545ffb762ac::t_f59109767da20a 292
+  s_709545ffb762ac::t_4dfa16a0d49440 340-342
+  s_709545ffb762ac::t_3a8a236792163e 38-39,41-57
+  s_709545ffb762ac::t_e4856f6243a9e9 122-178
+  s_709545ffb762ac::t_31ec48ac0e1a9e 40
+  s_709545ffb762ac::t_52074bac820b08 311,313,315-318
+  s_709545ffb762ac::t_9110633fa28e41 58-59
+  s_709545ffb762ac::t_f56ecb08b0c119 180
+  s_709545ffb762ac::t_dc6f568aa53d18 343-345
+CHANGELOG.md
+  s_709545ffb762ac::t_5096002fb0bfa3 31
+  s_709545ffb762ac::t_073d100843acd3 8-21,34-36
+  s_b6b0a0bb69769e::t_0e7dd9b111d374 5
+  s_709545ffb762ac::t_dcd22ff0690a80 30,32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "5e45555450a5399175f3dfef9e2c41cb3d2be55e",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    },
+    "s_b6b0a0bb69769e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ec0539a-1e88-47eb-b738-83b574386198",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
