@@ -4,7 +4,8 @@ import io
 
 import pytest
 
-from progz import ASCII, Component, Style, track
+from progz import Component, Style, track
+from progz.presets import ASCII
 
 
 @pytest.fixture(autouse=True)

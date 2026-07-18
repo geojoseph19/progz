@@ -6,8 +6,9 @@ import time
 from types import TracebackType
 from typing import TextIO
 
+from .presets import SHIMMER
 from .renderer import render_frame, truncate_visible
-from .styles import SHIMMER, Style
+from .styles import Style
 from .terminal import ERASE_LINE, supports_color
 
 _RATE_TAU = 1.0
@@ -49,7 +50,7 @@ class ProgressBar:
                 indeterminate mode (bouncing bar, plain count readouts,
                 no auto-finish).
             description: Text shown to the right of the bar.
-            style: Visual style; defaults to ``SHIMMER``.
+            style: Visual style; defaults to ``presets.SHIMMER``.
             file: Output stream; defaults to ``sys.stderr``.
             refresh_rate: Maximum redraws per second. Every update still
                 counts; skipped frames are drawn at the next boundary, and

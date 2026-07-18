@@ -132,33 +132,3 @@ class Style:
             if threshold <= prev:
                 raise ValueError("color_stops thresholds must be strictly increasing")
             prev = threshold
-
-
-SHIMMER = Style()
-
-ASCII = Style(
-    filled_char="#",
-    empty_char="-",
-    layout=(Component.BAR, Component.DESCRIPTION),
-)
-
-MINIMAL = Style(layout=(Component.BAR, Component.PERCENT))
-
-BLOCKS = Style(
-    filled_char="█",
-    empty_char="─",
-    block_chars=("▏", "▎", "▍", "▌", "▋", "▊", "▉"),
-)
-
-RAINBOW = Style(
-    color_stops=(
-        (0.0, (235, 70, 70)),
-        (0.2, (240, 160, 60)),
-        (0.4, (230, 220, 70)),
-        (0.6, (80, 200, 120)),
-        (0.8, (70, 130, 235)),
-        (1.0, (170, 90, 220)),
-    ),
-    interpolate=True,
-    color_by_position=True,
-)

@@ -2,7 +2,8 @@
 
 import pytest
 
-from progz.styles import ASCII, BLOCKS, MINIMAL, RAINBOW, SHIMMER, Component, Style
+from progz.presets import ASCII, BLOCKS, DETAILED, MINIMAL, RAINBOW, SHIMMER
+from progz.styles import Component, Style
 
 
 class TestStyleDefaults:
@@ -123,7 +124,7 @@ class TestLayout:
 
 class TestStylePresets:
     def test_all_presets_are_style_instances(self):
-        for preset in (SHIMMER, ASCII, BLOCKS, MINIMAL, RAINBOW):
+        for preset in (SHIMMER, ASCII, BLOCKS, MINIMAL, DETAILED, RAINBOW):
             assert isinstance(preset, Style)
 
     def test_presets_are_distinct(self):
@@ -137,6 +138,17 @@ class TestStylePresets:
 
     def test_minimal_layout(self):
         assert MINIMAL.layout == (Component.BAR, Component.PERCENT)
+
+    def test_detailed_layout(self):
+        assert DETAILED.layout == (
+            Component.SPINNER,
+            Component.BAR,
+            Component.PERCENT,
+            Component.COUNT,
+            Component.RATE,
+            Component.ETA,
+            Component.ELAPSED,
+        )
 
     def test_rainbow_gradient_settings(self):
         assert RAINBOW.interpolate is True

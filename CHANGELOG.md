@@ -13,8 +13,10 @@ All notable changes to progz are documented here.
 - `ProgressBar(transient=True)`: erase the bar on finish instead of moving to the next line.
 - Terminal width truncation: rendered lines are cut to the terminal width (ANSI-aware) at each drawn frame, preventing wrap corruption.
 - Windows 10+ ANSI support: `supports_color()` enables virtual terminal processing via stdlib `ctypes`; consoles that reject it fall back to plain output.
+- Presets ship in the `progz.presets` namespace (`progz.presets.SHIMMER`, `ASCII`, `BLOCKS`, `MINIMAL`, `RAINBOW`). The top-level import stays limited to the core API: `ProgressBar`, `track`, `Style`, `Component`, `RGB`.
 - `BLOCKS` preset and `Style.block_chars`: eighth-block sub-cell fill for 8 visible states per bar cell.
 - `MINIMAL` preset: bar plus percent.
+- `DETAILED` preset: every readout at once (spinner, bar, percent, count, rate, ETA, elapsed) for long-running jobs.
 - `RAINBOW` preset: interpolated multi-color gradient painted across the bar.
 - `benchmarks/bench.py`: import time, per-update cost with and without draw, frame render cost. Stdlib only.
 - Import-time regression test in CI, enforcing the weightless-import claim.

@@ -2,14 +2,15 @@
 
 import time
 
-from progz import ASCII, BLOCKS, MINIMAL, RAINBOW, SHIMMER, ProgressBar
+from progz import ProgressBar, presets
 
 for name, style in (
-    ("SHIMMER", SHIMMER),
-    ("ASCII", ASCII),
-    ("BLOCKS", BLOCKS),
-    ("MINIMAL", MINIMAL),
-    ("RAINBOW", RAINBOW),
+    ("SHIMMER", presets.SHIMMER),
+    ("ASCII", presets.ASCII),
+    ("BLOCKS", presets.BLOCKS),
+    ("MINIMAL", presets.MINIMAL),
+    ("DETAILED", presets.DETAILED),
+    ("RAINBOW", presets.RAINBOW),
 ):
     with ProgressBar(total=120, style=style, description=name) as bar:
         for _ in range(120):

@@ -1,7 +1,8 @@
 """progz: terminal progress bar."""
 
+from . import presets
 from .progress import ProgressBar
-from .styles import ASCII, BLOCKS, MINIMAL, RAINBOW, RGB, SHIMMER, Component, Style
+from .styles import RGB, Component, Style
 from .track import track
 
 __all__ = [
@@ -10,11 +11,7 @@ __all__ = [
     "Style",
     "Component",
     "RGB",
-    "SHIMMER",
-    "ASCII",
-    "BLOCKS",
-    "MINIMAL",
-    "RAINBOW",
+    "presets",
 ]
 
 

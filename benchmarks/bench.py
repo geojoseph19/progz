@@ -20,7 +20,7 @@ sys.path.insert(0, _SRC)
 
 from progz import ProgressBar  # noqa: E402
 from progz.renderer import render_frame  # noqa: E402
-from progz.styles import SHIMMER  # noqa: E402
+from progz.presets import SHIMMER  # noqa: E402
 
 
 def bench_import_time(runs: int = 5) -> float:

@@ -4,8 +4,9 @@ import re
 
 import pytest
 
+from progz.presets import ASCII, SHIMMER
 from progz.renderer import render_frame, truncate_visible
-from progz.styles import ASCII, SHIMMER, Component, Style
+from progz.styles import Component, Style
 from progz.terminal import RESET
 
 

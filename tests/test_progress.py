@@ -6,7 +6,8 @@ import time
 
 import pytest
 
-from progz import ASCII, SHIMMER, Component, ProgressBar, Style
+from progz import Component, ProgressBar, Style
+from progz.presets import ASCII, SHIMMER
 from progz.terminal import ERASE_LINE
 
 
