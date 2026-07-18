@@ -12,7 +12,7 @@ authors = [{name = "Geo Joseph", email = "geodesignx@gmail.com"}]
 requires-python = ">=3.10"
 keywords = ["progress", "bar", "terminal", "cli", "animation"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
