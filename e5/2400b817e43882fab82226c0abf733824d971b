@@ -1,0 +1,27 @@
+tests/test_properties.py
+  s_709545ffb762ac::t_10e610e6138ab8 50-52,55
+  s_709545ffb762ac::t_3e043e81b827d9 64-66,68
+  s_709545ffb762ac::t_644f5e521d5e7b 84
+  s_709545ffb762ac::t_a0de0e7eb75ce4 1-45,53-54,56-63,67,69-83,85-89
+  s_709545ffb762ac::t_8a493b091902c6 46-49
+pyproject.toml
+  s_709545ffb762ac::t_3474daa5f51b4a 30
+tests/test_import_time.py
+  s_709545ffb762ac::t_83337fc7ec584f 1-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "e52400b817e43882fab82226c0abf733824d971b",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
