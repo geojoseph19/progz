@@ -24,3 +24,25 @@ class TestSupportsColor:
         monkeypatch.setenv("NO_COLOR", "1")
         monkeypatch.setenv("FORCE_COLOR", "1")
         assert supports_color(io.StringIO()) is False
+
+    def test_dumb_term_disables(self, monkeypatch):
+        monkeypatch.delenv("NO_COLOR", raising=False)
+        monkeypatch.delenv("FORCE_COLOR", raising=False)
+        monkeypatch.setenv("TERM", "dumb")
+
+        class Tty(io.StringIO):
+            def isatty(self):
+                return True
+
+        assert supports_color(Tty()) is False
+
+    def test_tty_with_capable_term_enables(self, monkeypatch):
+        monkeypatch.delenv("NO_COLOR", raising=False)
+        monkeypatch.delenv("FORCE_COLOR", raising=False)
+        monkeypatch.setenv("TERM", "xterm-256color")
+
+        class Tty(io.StringIO):
+            def isatty(self):
+                return True
+
+        assert supports_color(Tty()) is True

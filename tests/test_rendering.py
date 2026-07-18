@@ -1,12 +1,15 @@
 """Tests for render_frame output correctness."""
 
+import re
+
 import pytest
 
-from progz.renderer import render_frame
+from progz.renderer import render_frame, truncate_visible
 from progz.styles import ASCII, SHIMMER, Component, Style
+from progz.terminal import RESET
 
 
-def _render(completed, total, elapsed=0.0, description="", style=None, use_color=False):
+def _render(completed, total, elapsed=0.0, description="", style=None, use_color=False, rate=None):
     return render_frame(
         completed=completed,
         total=total,
@@ -14,6 +17,7 @@ def _render(completed, total, elapsed=0.0, description="", style=None, use_color
         description=description,
         style=style or ASCII,
         use_color=use_color,
+        rate=rate,
     )
 
 
@@ -280,6 +284,186 @@ class TestColorStops:
         style = _flat_style(color_stops=((0.0, self.RED),))
         out = _render(5, 10, style=style, use_color=False)
         assert "\033[" not in out
+
+
+class TestCount:
+    def test_count(self):
+        style = Style(layout=(Component.COUNT,))
+        assert _render(5, 10, style=style) == "5/10"
+
+    def test_count_indeterminate(self):
+        style = Style(layout=(Component.COUNT,))
+        assert _render(1234, None, style=style) == "1234"
+
+    def test_count_after_bar_separated(self):
+        style = Style(layout=(Component.BAR, Component.COUNT), filled_char="#", empty_char="-")
+        out = _render(5, 10, style=style)
+        assert out.endswith(" 5/10")
+
+
+class TestElapsed:
+    def test_elapsed_minutes_seconds(self):
+        style = Style(layout=(Component.ELAPSED,))
+        assert _render(0, 10, elapsed=83.0, style=style) == "01:23"
+
+    def test_elapsed_hours(self):
+        style = Style(layout=(Component.ELAPSED,))
+        assert _render(0, 10, elapsed=3661.0, style=style) == "1:01:01"
+
+
+class TestRate:
+    def test_rate_unknown(self):
+        style = Style(layout=(Component.RATE,))
+        assert _render(0, 10, style=style) == "-- it/s"
+
+    def test_rate_small(self):
+        style = Style(layout=(Component.RATE,))
+        assert _render(0, 10, style=style, rate=2.5) == "2.5 it/s"
+
+    def test_rate_kilo(self):
+        style = Style(layout=(Component.RATE,))
+        assert _render(0, 10, style=style, rate=1234.0) == "1.2k it/s"
+
+    def test_rate_not_colored_after_bar(self):
+        style = Style(layout=(Component.BAR, Component.RATE))
+        out = _render(5, 10, style=style, use_color=True, rate=10.0)
+        after = out[out.rfind(RESET) + len(RESET) :]
+        assert "10.0 it/s" in after
+        assert "\033[38;2;" not in after
+
+
+class TestEta:
+    def test_eta(self):
+        style = Style(layout=(Component.ETA,))
+        assert _render(5, 10, style=style, rate=5.0) == "~00:01"
+
+    def test_eta_no_rate(self):
+        style = Style(layout=(Component.ETA,))
+        assert _render(5, 10, style=style) == "~--:--"
+
+    def test_eta_zero_rate(self):
+        style = Style(layout=(Component.ETA,))
+        assert _render(5, 10, style=style, rate=0.0) == "~--:--"
+
+    def test_eta_indeterminate(self):
+        style = Style(layout=(Component.ETA,))
+        assert _render(5, None, style=style, rate=5.0) == "~--:--"
+
+    def test_eta_at_completion_zero(self):
+        style = Style(layout=(Component.ETA,))
+        assert _render(10, 10, style=style, rate=5.0) == "~00:00"
+
+
+class TestIndeterminateBar:
+    def test_width_constant(self):
+        out = _render(0, None, style=ASCII)
+        assert len(out) == ASCII.bar_width
+
+    def test_segment_at_start(self):
+        out = _render(0, None, elapsed=0.0, style=ASCII)
+        seg = max(1, ASCII.bar_width // 4)
+        assert out.startswith("#" * seg)
+        assert out.endswith("-" * (ASCII.bar_width - seg))
+
+    def test_segment_moves_with_elapsed(self):
+        a = _render(0, None, elapsed=0.0, style=ASCII)
+        b = _render(0, None, elapsed=0.5, style=ASCII)
+        assert a != b
+
+    def test_percent_shows_dashes(self):
+        style = Style(layout=(Component.PERCENT,))
+        assert _render(5, None, style=style) == " --%"
+
+    def test_color_resets(self):
+        style = Style(layout=(Component.BAR,))
+        out = _render(0, None, elapsed=0.3, style=style, use_color=True)
+        assert out.endswith(RESET)
+
+    def test_no_color_clean(self):
+        out = _render(0, None, elapsed=0.3, style=ASCII)
+        assert "\033[" not in out
+
+
+_EIGHTHS = ("▏", "▎", "▍", "▌", "▋", "▊", "▉")
+
+
+def _blocks_style(width=8):
+    return Style(
+        layout=(Component.BAR,),
+        bar_width=width,
+        filled_char="█",
+        empty_char="─",
+        block_chars=_EIGHTHS,
+    )
+
+
+class TestBlockChars:
+    def test_half_cell(self):
+        # ratio 12/64 over width 8 = 1.5 cells: one full, one half
+        out = _render(12, 64, style=_blocks_style())
+        assert out == "█▌──────"
+
+    def test_full_bar_no_partial(self):
+        out = _render(64, 64, style=_blocks_style())
+        assert out == "█" * 8
+
+    def test_empty_bar_no_partial(self):
+        out = _render(0, 64, style=_blocks_style())
+        assert out == "─" * 8
+
+    def test_width_constant_across_progress(self):
+        style = _blocks_style()
+        for completed in range(65):
+            assert len(_render(completed, 64, style=style)) == 8
+
+    def test_thinnest_glyph(self):
+        # ratio 1/64 over width 8 = 0.125 cells -> eighth glyph
+        out = _render(1, 64, style=_blocks_style())
+        assert out == "▏───────"
+
+    def test_color_partial_cell_colored(self):
+        out = _render(12, 64, style=_blocks_style(), use_color=True)
+        assert "▌" in out
+        assert out.index("\033[38;2;") < out.index("▌")
+
+
+class TestTruncateVisible:
+    def test_plain_short_unchanged(self):
+        assert truncate_visible("abc", 10) == "abc"
+
+    def test_plain_exact_unchanged(self):
+        assert truncate_visible("abc", 3) == "abc"
+
+    def test_plain_cut(self):
+        assert truncate_visible("abcdef", 3) == "abc"
+
+    def test_zero_width(self):
+        assert truncate_visible("abc", 0) == ""
+
+    def test_ansi_zero_width(self):
+        line = "\033[38;2;1;2;3ma\033[0mb"
+        assert truncate_visible(line, 2) == line
+
+    def test_ansi_cut_appends_reset(self):
+        line = "\033[38;2;1;2;3mabcdef" + RESET
+        out = truncate_visible(line, 3)
+        assert out.endswith(RESET)
+        assert "abc" in out
+        assert "abcd" not in out
+
+    def test_unterminated_escape_dropped(self):
+        out = truncate_visible("ab\033[38;2;1", 10)
+        assert out == "ab" + RESET
+
+    def test_indeterminate_zero_width_bar_empty(self):
+        style = Style(layout=(Component.BAR,), bar_width=0)
+        assert _render(0, None, style=style) == ""
+
+    def test_cut_colored_frame_visible_width(self):
+        frame = render_frame(5, 10, 0.0, "description", SHIMMER, True)
+        out = truncate_visible(frame, 10)
+        assert len(re.sub(r"\033\[[0-9;]*m", "", out)) == 10
+        assert out.endswith(RESET)
 
 
 class TestDeterminism:

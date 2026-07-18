@@ -2,7 +2,7 @@
 
 import pytest
 
-from progz.styles import ASCII, SHIMMER, Component, Style
+from progz.styles import ASCII, BLOCKS, MINIMAL, RAINBOW, SHIMMER, Component, Style
 
 
 class TestStyleDefaults:
@@ -122,12 +122,26 @@ class TestLayout:
 
 
 class TestStylePresets:
-    def test_shimmer_is_style_instance(self):
-        assert isinstance(SHIMMER, Style)
-
-    def test_ascii_is_style_instance(self):
-        assert isinstance(ASCII, Style)
+    def test_all_presets_are_style_instances(self):
+        for preset in (SHIMMER, ASCII, BLOCKS, MINIMAL, RAINBOW):
+            assert isinstance(preset, Style)
 
     def test_presets_are_distinct(self):
         assert SHIMMER is not ASCII
         assert SHIMMER.filled_char != ASCII.filled_char
+
+    def test_blocks_has_eighth_glyphs(self):
+        assert len(BLOCKS.block_chars) == 7
+        assert BLOCKS.filled_char == "█"
+        assert all(len(ch) == 1 for ch in BLOCKS.block_chars)
+
+    def test_minimal_layout(self):
+        assert MINIMAL.layout == (Component.BAR, Component.PERCENT)
+
+    def test_rainbow_gradient_settings(self):
+        assert RAINBOW.interpolate is True
+        assert RAINBOW.color_by_position is True
+        assert len(RAINBOW.color_stops) >= 5
+
+    def test_block_chars_default_empty(self):
+        assert Style().block_chars == ()
