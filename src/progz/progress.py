@@ -20,7 +20,7 @@ class ProgressBar:
                 process(item)
                 bar.update()
 
-    Usage — manual::
+    Usage, manual::
 
         bar = ProgressBar(total=100)
         for item in items:
@@ -39,10 +39,10 @@ class ProgressBar:
         """Create a progress bar.
 
         Args:
-            total:       Number of steps to completion.
+            total: Number of steps to completion.
             description: Text shown to the right of the bar.
-            style:       Visual style; defaults to SHIMMER.
-            file:        Output stream; defaults to sys.stderr.
+            style: Visual style; defaults to ``SHIMMER``.
+            file: Output stream; defaults to ``sys.stderr``.
         """
         self._total = max(0, total)
         self._completed = 0
@@ -68,7 +68,7 @@ class ProgressBar:
         """Advance the bar by n steps and redraw.
 
         Args:
-            n:           Steps to advance.
+            n: Steps to advance.
             description: Replace the current description text.
         """
         if self._finished:

@@ -4,16 +4,18 @@ from dataclasses import dataclass
 from enum import Enum, auto
 
 RGB = tuple[int, int, int]
+"""A 24-bit color as ``(r, g, b)``, each 0 to 255."""
 
 
 class Component(Enum):
     """Visual components that can be stacked left-to-right in a progress bar layout.
 
-    SPINNER:     Animated braille character; silently omitted when color is off.
-    BAR:         Left-to-right fill bar tied to progress percentage.
-    TEXT:        Fixed string rendered with a continuous shimmer wave.
-    PERCENT:     Compact percentage readout, e.g. `` 42%``.
-    DESCRIPTION: Plain-text label; always rendered unstyled after any ANSI resets.
+    Attributes:
+        SPINNER: Animated braille character; silently omitted when color is off.
+        BAR: Left-to-right fill bar tied to progress percentage.
+        TEXT: The ``fill_text`` string rendered with a continuous shimmer wave.
+        PERCENT: Compact percentage readout, e.g. `` 42%``.
+        DESCRIPTION: Plain-text label; always rendered unstyled after any ANSI resets.
 
     Example, percent before description::
 
@@ -35,16 +37,23 @@ class Component(Enum):
 class Style:
     """Visual configuration for a progress bar.
 
-    The ``layout`` tuple controls which components are rendered and in what
-    order (left to right). Omit a component to hide it entirely.
-
-    Example, no spinner::
-
-        Style(layout=(Component.BAR, Component.DESCRIPTION))
-
-    Example, percentage readout::
-
-        Style(layout=(Component.SPINNER, Component.BAR, Component.PERCENT, Component.DESCRIPTION))
+    Attributes:
+        layout: Components to render, left to right. Omit one to hide it.
+        bar_width: Bar width in characters.
+        speed: Shimmer sweep speed in cycles per second.
+        filled_char: Character for the filled portion.
+        empty_char: Character for the empty portion.
+        fill_text: String rendered by ``Component.TEXT``.
+        min_brightness: Shimmer brightness floor, 0 to 255.
+        brightness_range: Shimmer brightness range above the floor.
+        empty_rgb: Color of the empty portion.
+        spinner_color_rgb: Color of the spinner.
+        spinner_frames: Animation frames cycled by the spinner.
+        color_stops: ``(threshold, (r, g, b))`` stops mapping progress to
+            the bar fill color.
+        interpolate: Blend linearly between adjacent color stops.
+        color_by_position: Color each bar cell by its own position instead
+            of the current progress.
 
     Example, shimmer text banner instead of a fill bar::
 
