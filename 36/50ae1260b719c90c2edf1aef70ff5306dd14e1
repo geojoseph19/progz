@@ -1,0 +1,36 @@
+tests/test_progress.py
+  s_709545ffb762ac::t_cc660a11162527 4-5,13,20-40
+  s_709545ffb762ac::t_37f0f62615bb3a 187-246,249-377
+  s_709545ffb762ac::t_288e80c55147e6 247-248
+  s_709545ffb762ac::t_b5ea57e1e8f20d 378-396
+  s_709545ffb762ac::t_fef04a8f910f4c 9
+  s_709545ffb762ac::t_c1748bbdd09354 41-42
+  s_709545ffb762ac::t_8a6cc5aff91097 397-398
+tests/test_styles.py
+  s_709545ffb762ac::t_52fdb63c516c7b 125-127,132-147
+  s_709545ffb762ac::t_e851388a74dbd9 5
+tests/test_rendering.py
+  s_709545ffb762ac::t_7128d9d636325e 3-4
+  s_709545ffb762ac::t_13a077ac9c648a 454-461
+  s_709545ffb762ac::t_369ee8ce7b063e 289-453,462-466
+  s_709545ffb762ac::t_eab4c104ffd08d 7,9,12,20
+  s_709545ffb762ac::t_ed87897deb5990 467-468
+tests/test_terminal.py
+  s_709545ffb762ac::t_3eab4176abbe91 27-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "3650ae1260b719c90c2edf1aef70ff5306dd14e1",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
