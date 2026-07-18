@@ -1,0 +1,21 @@
+src/progz/format.py
+  s_709545ffb762ac::t_7e4fdc4874ae26 1-26
+tests/test_format.py
+  s_709545ffb762ac::t_914f8778f6d041 1-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "5c35825ab8eaefd6ed1de75c42144e21e4f80454",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
