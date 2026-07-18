@@ -3,7 +3,7 @@
 from importlib.metadata import version
 
 from .progress import ProgressBar
-from .styles import ASCII, SHIMMER, Component, Style
+from .styles import ASCII, RGB, SHIMMER, Component, Style
 
-__all__ = ["ProgressBar", "Style", "SHIMMER", "ASCII", "Component"]
+__all__ = ["ProgressBar", "Style", "SHIMMER", "ASCII", "Component", "RGB"]
 __version__ = version("progz")

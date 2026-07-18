@@ -2,7 +2,7 @@
 
 import math
 
-from .styles import Component, Style
+from .styles import RGB, Component, Style
 from .terminal import RESET, rgb
 
 
@@ -78,6 +78,32 @@ def _ratio(completed: int, total: int) -> float:
     return min(1.0, completed / total) if total > 0 else 1.0
 
 
+def _shimmer_scale(i: int, n: int, elapsed: float, style: Style) -> int:
+    """Brightness scale 0..255 for position i of n in the shimmer wave."""
+    phase = (i / n) - (elapsed * style.speed % 1.0)
+    brightness = (math.sin(phase * 2 * math.pi) + 1) / 2
+    return max(0, min(255, int(style.min_brightness + brightness * style.brightness_range)))
+
+
+def _stop_rgb(ratio: float, stops: tuple[tuple[float, RGB], ...], interpolate: bool) -> RGB:
+    """Resolve the color for a progress ratio from sorted color stops."""
+    idx = 0
+    for i, (threshold, _) in enumerate(stops):
+        if threshold > ratio:
+            break
+        idx = i
+    t0, c0 = stops[idx]
+    if not interpolate or idx == len(stops) - 1 or ratio <= t0:
+        return c0
+    t1, c1 = stops[idx + 1]
+    t = (ratio - t0) / (t1 - t0)
+    return (
+        int(c0[0] + (c1[0] - c0[0]) * t),
+        int(c0[1] + (c1[1] - c0[1]) * t),
+        int(c0[2] + (c1[2] - c0[2]) * t),
+    )
+
+
 def _render_spinner(parts: list[str], style: Style, elapsed: float) -> None:
     frame_idx = int(elapsed * 10) % len(style.spinner_frames)
     r, g, b = style.spinner_color_rgb
@@ -92,26 +118,31 @@ def _render_bar(
     elapsed: float,
     use_color: bool,
 ) -> None:
-    filled = int(_ratio(completed, total) * style.bar_width)
+    width = style.bar_width
+    ratio = _ratio(completed, total)
+    filled = int(ratio * width)
 
-    er, eg, eb = style.empty_rgb
-    empty_esc = f"{rgb(er, eg, eb)}" if use_color else ""
-    in_empty = False
+    if not use_color:
+        parts.append(style.filled_char * filled)
+        parts.append(style.empty_char * (width - filled))
+        return
 
-    for i in range(style.bar_width):
-        if i < filled:
-            if use_color:
-                phase = (i / style.bar_width) - (elapsed * style.speed % 1.0)
-                brightness = (math.sin(phase * 2 * math.pi) + 1) / 2
-                grey = max(0, min(255, int(style.min_brightness + brightness * style.brightness_range)))
-                parts.append(f"{rgb(grey, grey, grey)}{style.filled_char}")
-            else:
-                parts.append(style.filled_char)
+    stops = style.color_stops
+    base = None if style.color_by_position else _stop_rgb(ratio, stops, style.interpolate)
+    for i in range(filled):
+        if base is None:
+            # Cells span the bar from 0% (leftmost) to 100% (rightmost).
+            cell_ratio = i / (width - 1) if width > 1 else 1.0
+            r, g, b = _stop_rgb(cell_ratio, stops, style.interpolate)
         else:
-            if not in_empty:
-                parts.append(empty_esc)
-                in_empty = True
-            parts.append(style.empty_char)
+            r, g, b = base
+        scale = _shimmer_scale(i, width, elapsed, style)
+        parts.append(f"{rgb(r * scale // 255, g * scale // 255, b * scale // 255)}{style.filled_char}")
+
+    if filled < width:
+        er, eg, eb = style.empty_rgb
+        parts.append(rgb(er, eg, eb))
+        parts.append(style.empty_char * (width - filled))
 
 
 def _render_text(
@@ -121,14 +152,12 @@ def _render_text(
     use_color: bool,
 ) -> None:
     text = style.fill_text
+    if not use_color:
+        parts.append(text)
+        return
     for i, char in enumerate(text):
-        if use_color:
-            phase = (i / len(text)) - (elapsed * style.speed % 1.0)
-            brightness = (math.sin(phase * 2 * math.pi) + 1) / 2
-            grey = max(0, min(255, int(style.min_brightness + brightness * style.brightness_range)))
-            parts.append(f"{rgb(grey, grey, grey)}{char}")
-        else:
-            parts.append(char)
+        grey = _shimmer_scale(i, len(text), elapsed, style)
+        parts.append(f"{rgb(grey, grey, grey)}{char}")
 
 
 def _render_percent(parts: list[str], completed: int, total: int) -> None:

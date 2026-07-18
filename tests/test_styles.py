@@ -56,6 +56,39 @@ class TestStyleCustomization:
         assert s1.bar_width != s2.bar_width
 
 
+class TestColorStops:
+    def test_default_single_white_stop(self):
+        s = Style()
+        assert s.color_stops == ((0.0, (255, 255, 255)),)
+        assert s.interpolate is False
+        assert s.color_by_position is False
+
+    def test_custom_stops(self):
+        stops = ((0.0, (220, 60, 60)), (0.5, (230, 200, 60)), (0.9, (80, 200, 120)))
+        s = Style(color_stops=stops)
+        assert s.color_stops == stops
+
+    def test_empty_stops_rejected(self):
+        with pytest.raises(ValueError, match="at least one stop"):
+            Style(color_stops=())
+
+    def test_threshold_above_one_rejected(self):
+        with pytest.raises(ValueError, match="outside"):
+            Style(color_stops=((1.5, (0, 0, 0)),))
+
+    def test_threshold_below_zero_rejected(self):
+        with pytest.raises(ValueError, match="outside"):
+            Style(color_stops=((-0.1, (0, 0, 0)),))
+
+    def test_unsorted_thresholds_rejected(self):
+        with pytest.raises(ValueError, match="strictly increasing"):
+            Style(color_stops=((0.5, (0, 0, 0)), (0.2, (1, 1, 1))))
+
+    def test_duplicate_thresholds_rejected(self):
+        with pytest.raises(ValueError, match="strictly increasing"):
+            Style(color_stops=((0.5, (0, 0, 0)), (0.5, (1, 1, 1))))
+
+
 class TestLayout:
     def test_default_layout_order(self):
         s = Style()

@@ -5,6 +5,10 @@ All notable changes to progz are documented here.
 ## [Unreleased]
 
 ### Added
+- `Style.color_stops`: map progress percentages or ranges to bar fill colors via `(threshold, (r, g, b))` stops. Invalid stops raise `ValueError`.
+- `Style.interpolate`: blend colors linearly between adjacent stops.
+- `Style.color_by_position`: color each bar cell by its own position instead of current progress, so a finished bar shows every color of the journey.
+- `RGB` type alias, exported from `progz`.
 - `Component` enum and `Style.layout` for composable layouts. Stack `SPINNER`, `BAR`, `TEXT`, `PERCENT`, and `DESCRIPTION` in any order.
 - `Component.PERCENT`: compact percentage readout.
 - `Component.TEXT` with `Style.fill_text`: a fixed string rendered with the shimmer wave.

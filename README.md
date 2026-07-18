@@ -18,6 +18,7 @@ Zero runtime dependencies. Pure Python 3.10+ stdlib.
 - 24-bit ANSI RGB rendering, no dependencies
 - Braille spinner tied to elapsed time
 - Composable layout: stack spinner, bar, text, percent, description in any order
+- Progress-based colors: map any percentage or range to a color via `color_stops`, with optional gradient blending
 - ASCII fallback for dumb terminals
 - Context manager and manual API
 - Fully customizable via `Style` dataclass
@@ -106,6 +107,38 @@ with ProgressBar(total=100, style=style) as bar:
     ...
 ```
 
+### Progress-based colors
+
+`color_stops` maps progress to the bar fill color. Each stop is
+`(threshold, (r, g, b))`; the fill uses the last stop at or below the
+current progress ratio.
+
+```python
+from progz import ProgressBar, Style
+
+# Red below 50%, yellow from 50%, green from 90%
+style = Style(color_stops=(
+    (0.0, (220, 60, 60)),
+    (0.5, (230, 200, 60)),
+    (0.9, (80, 200, 120)),
+))
+```
+
+Add `interpolate=True` to blend colors smoothly between stops. Add
+`color_by_position=True` to color each bar cell by its own position
+instead of the current progress: the bar fills left to right and each
+cell keeps its percentage's color, so a finished bar shows the full
+color journey.
+
+```python
+# Smooth red-to-green gradient painted across the bar
+style = Style(
+    color_stops=((0.0, (220, 60, 60)), (1.0, (80, 200, 120))),
+    interpolate=True,
+    color_by_position=True,
+)
+```
+
 ---
 
 ## API Reference
@@ -144,10 +177,21 @@ class Style:
     fill_text: str = ""                              # string rendered by Component.TEXT
     min_brightness: int = 80                         # grey floor (0 to 255)
     brightness_range: int = 175                      # grey range above floor
-    empty_rgb: tuple[int, int, int] = (60, 60, 60)  # empty zone color
-    spinner_color_rgb: tuple[int, int, int] = (0, 200, 200)
+    empty_rgb: RGB = (60, 60, 60)                    # empty zone color
+    spinner_color_rgb: RGB = (0, 200, 200)
     spinner_frames: tuple[str, ...] = ("⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏")
+    color_stops: tuple[tuple[float, RGB], ...] = ((0.0, (255, 255, 255)),)
+    interpolate: bool = False                        # blend between adjacent stops
+    color_by_position: bool = False                  # cells keep their own position color
 ```
+
+`RGB` is a type alias for `tuple[int, int, int]`, exported from `progz`.
+
+`color_stops` thresholds must be strictly increasing, in 0.0 to 1.0.
+`Style` raises `ValueError` otherwise. Progress below the first
+threshold uses the first stop's color. The shimmer wave modulates
+brightness on top of the stop color; the default single white stop is
+the classic greyscale shimmer. Stops are ignored when color is off.
 
 ### `Component`
 

@@ -204,6 +204,84 @@ class TestLayout:
         assert "━" in out or "─" in out
 
 
+def _flat_style(**kwargs):
+    # min_brightness=255, brightness_range=0 pins the shimmer scale at 255,
+    # so filled cells carry the stop color exactly.
+    return Style(
+        layout=(Component.BAR,),
+        min_brightness=255,
+        brightness_range=0,
+        **kwargs,
+    )
+
+
+class TestColorStops:
+    RED = (255, 0, 0)
+    GREEN = (0, 255, 0)
+
+    def test_state_mode_uses_current_progress_color(self):
+        style = _flat_style(color_stops=((0.0, self.RED), (0.5, self.GREEN)))
+        low = _render(2, 10, style=style, use_color=True)
+        high = _render(8, 10, style=style, use_color=True)
+        assert "\033[38;2;255;0;0m" in low
+        assert "\033[38;2;0;255;0m" not in low
+        assert "\033[38;2;0;255;0m" in high
+        assert "\033[38;2;255;0;0m" not in high
+
+    def test_stop_boundary_inclusive(self):
+        style = _flat_style(color_stops=((0.0, self.RED), (0.5, self.GREEN)))
+        out = _render(5, 10, style=style, use_color=True)
+        assert "\033[38;2;0;255;0m" in out
+
+    def test_position_mode_full_bar_shows_all_stop_colors(self):
+        style = _flat_style(
+            color_stops=((0.0, self.RED), (0.5, (0, 0, 255)), (1.0, self.GREEN)),
+            color_by_position=True,
+        )
+        out = _render(10, 10, style=style, use_color=True)
+        assert "\033[38;2;255;0;0m" in out
+        assert "\033[38;2;0;0;255m" in out
+        assert "\033[38;2;0;255;0m" in out
+
+    def test_position_mode_partial_bar_lacks_final_color(self):
+        style = _flat_style(
+            color_stops=((0.0, self.RED), (1.0, self.GREEN)),
+            color_by_position=True,
+        )
+        out = _render(3, 10, style=style, use_color=True)
+        assert "\033[38;2;255;0;0m" in out
+        assert "\033[38;2;0;255;0m" not in out
+
+    def test_interpolate_midpoint(self):
+        style = _flat_style(
+            bar_width=3,
+            color_stops=((0.0, (0, 0, 0)), (1.0, (200, 100, 50))),
+            interpolate=True,
+            color_by_position=True,
+        )
+        out = _render(3, 3, style=style, use_color=True)
+        assert "\033[38;2;0;0;0m" in out
+        assert "\033[38;2;100;50;25m" in out
+        assert "\033[38;2;200;100;50m" in out
+
+    def test_discrete_holds_last_stop_color(self):
+        style = _flat_style(color_stops=((0.0, self.RED), (0.5, self.GREEN)))
+        out = _render(10, 10, style=style, use_color=True)
+        assert "\033[38;2;0;255;0m" in out
+
+    def test_default_stops_render_greyscale(self):
+        out = _render(10, 10, style=SHIMMER, use_color=True)
+        for chunk in out.split("\033[38;2;")[1:]:
+            r, g, b = chunk.split("m", 1)[0].split(";")
+            if chunk.split("m", 1)[1].startswith(SHIMMER.filled_char):
+                assert r == g == b
+
+    def test_no_color_ignores_stops(self):
+        style = _flat_style(color_stops=((0.0, self.RED),))
+        out = _render(5, 10, style=style, use_color=False)
+        assert "\033[" not in out
+
+
 class TestDeterminism:
     def test_same_inputs_same_output(self):
         args = dict(completed=5, total=10, elapsed=1.0, description="x", style=SHIMMER, use_color=True)
