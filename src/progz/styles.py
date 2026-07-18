@@ -12,10 +12,17 @@ class Component(Enum):
 
     Attributes:
         SPINNER: Animated braille character; silently omitted when color is off.
-        BAR: Left-to-right fill bar tied to progress percentage.
+        BAR: Left-to-right fill bar tied to progress percentage; a bouncing
+            segment when the total is unknown.
         TEXT: The ``fill_text`` string rendered with a continuous shimmer wave.
-        PERCENT: Compact percentage readout, e.g. `` 42%``.
+        PERCENT: Compact percentage readout, e.g. `` 42%``; `` --%`` when the
+            total is unknown.
         DESCRIPTION: Plain-text label; always rendered unstyled after any ANSI resets.
+        COUNT: ``42/1000`` readout; a plain count when the total is unknown.
+        ELAPSED: Elapsed time as ``01:23`` (``h:mm:ss`` from one hour up).
+        RATE: Smoothed throughput, e.g. ``1.2k it/s``; ``-- it/s`` until an
+            estimate exists.
+        ETA: Estimated time remaining, e.g. ``~00:45``; ``~--:--`` when unknown.
 
     Example, percent before description::
 
@@ -31,6 +38,10 @@ class Component(Enum):
     TEXT = auto()
     PERCENT = auto()
     DESCRIPTION = auto()
+    COUNT = auto()
+    ELAPSED = auto()
+    RATE = auto()
+    ETA = auto()
 
 
 @dataclass(frozen=True)
@@ -54,6 +65,9 @@ class Style:
         interpolate: Blend linearly between adjacent color stops.
         color_by_position: Color each bar cell by its own position instead
             of the current progress.
+        block_chars: Partial-fill glyphs for the bar's boundary cell,
+            thinnest to thickest, one character each. Empty disables
+            sub-cell fill. See the ``BLOCKS`` preset.
 
     Example, shimmer text banner instead of a fill bar::
 
@@ -106,6 +120,7 @@ class Style:
     color_stops: tuple[tuple[float, RGB], ...] = ((0.0, (255, 255, 255)),)
     interpolate: bool = False
     color_by_position: bool = False
+    block_chars: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if not self.color_stops:
@@ -125,4 +140,25 @@ ASCII = Style(
     filled_char="#",
     empty_char="-",
     layout=(Component.BAR, Component.DESCRIPTION),
+)
+
+MINIMAL = Style(layout=(Component.BAR, Component.PERCENT))
+
+BLOCKS = Style(
+    filled_char="█",
+    empty_char="─",
+    block_chars=("▏", "▎", "▍", "▌", "▋", "▊", "▉"),
+)
+
+RAINBOW = Style(
+    color_stops=(
+        (0.0, (235, 70, 70)),
+        (0.2, (240, 160, 60)),
+        (0.4, (230, 220, 70)),
+        (0.6, (80, 200, 120)),
+        (0.8, (70, 130, 235)),
+        (1.0, (170, 90, 220)),
+    ),
+    interpolate=True,
+    color_by_position=True,
 )
