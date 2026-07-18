@@ -1,0 +1,23 @@
+tests/test_track.py
+  s_709545ffb762ac::t_9a1814c3600649 1-86
+src/progz/track.py
+  s_709545ffb762ac::t_9f0e48d2ace89f 1-49
+src/progz/__init__.py
+  s_709545ffb762ac::t_ff1a8ae43c2078 4-24,26-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "b8ee674d5868a01348c11c9d3b96b6bc4d0ed6ad",
+  "prompts": {},
+  "sessions": {
+    "s_709545ffb762ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f293a702-6dc8-4322-9c5e-f5798be392a6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
