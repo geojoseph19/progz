@@ -1,0 +1,19 @@
+README.md
+  s_2791ff067978b6::t_9fa9caf9522c5e 10,17-22,54,56,58,60,62,64,66-68,76-77,84-85,87,94-96,98,110-111,113,116,118,122-123,125,134-135,143-146,161-168,193-194,198-199,202,220,240,242-247,249
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "2dc300399eb033e051d593b0459a4a170567eac9",
+  "prompts": {},
+  "sessions": {
+    "s_2791ff067978b6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "28b9eb78-8b4d-489d-b8c8-fd12bbdd0109",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
