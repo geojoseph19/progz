@@ -3,6 +3,8 @@
 [![CI](https://github.com/geojoseph19/progz/actions/workflows/ci.yml/badge.svg)](https://github.com/geojoseph19/progz/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/progz)](https://pypi.org/project/progz/)
 
+![progz banner](https://raw.githubusercontent.com/geojoseph19/progz/main/docs/progz_banner.png)
+
 Lightweight, dependency-free terminal progress bar with unique, customizable styles.
 
 ![progz](https://raw.githubusercontent.com/geojoseph19/progz/main/docs/gifs/track.gif)
