@@ -1,0 +1,31 @@
+src/progz/presets.py
+  s_30befec5618f93::t_1a0d8703b4212a 56-70
+tests/test_styles.py
+  s_30befec5618f93::t_b93c12ac33df8f 5
+  s_30befec5618f93::t_7cb7fb0307f0dc 127
+  s_30befec5618f93::t_9abff089c8ad9a 158-163
+CHANGELOG.md
+  s_30befec5618f93::t_50045709685e95 5-9
+README.md
+  s_30befec5618f93::t_3d5f8f283fa843 56,58,60,62
+examples/presets.py
+  s_30befec5618f93::t_a06cd10496d634 1
+examples/signature.py
+  s_30befec5618f93::t_91a9ae2a19931f 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "745c594d8f36f353d6d2f97f04424bb11e7565e7",
+  "prompts": {},
+  "sessions": {
+    "s_30befec5618f93": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3bf17dba-7bde-4986-a786-21d266dd5406",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
