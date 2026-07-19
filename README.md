@@ -7,8 +7,6 @@
 
 Lightweight, dependency-free terminal progress bar with unique, customizable styles.
 
-![progz](https://raw.githubusercontent.com/geojoseph19/progz/main/docs/gifs/track.gif)
-
 Zero runtime dependencies. Pure Python 3.10+ stdlib. Fully typed.
 
 ---
