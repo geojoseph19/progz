@@ -53,3 +53,18 @@ RAINBOW = Style(
     interpolate=True,
     color_by_position=True,
 )
+
+# progz brand banner: dark field, ember streaks cooling from deep red
+# through orange and amber to a hot white-gold core (the glowing "Z").
+EMBER = Style(
+    color_stops=(
+        (0.0, (120, 30, 0)),
+        (0.35, (220, 80, 15)),
+        (0.7, (255, 150, 40)),
+        (1.0, (255, 232, 170)),
+    ),
+    interpolate=True,
+    color_by_position=True,
+    empty_rgb=(40, 20, 12),
+    spinner_color_rgb=(255, 120, 30),
+)

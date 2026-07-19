@@ -53,13 +53,13 @@ with ProgressBar(total=len(items)) as bar:
 
 ## Gallery
 
-Presets, in the `progz.presets` namespace (`presets.SHIMMER`, `presets.ASCII`, `presets.BLOCKS`, `presets.MINIMAL`, `presets.DETAILED`, `presets.RAINBOW`):
+Signature presets, `presets.EMBER` (the brand gradient) and `presets.SHIMMER` (the default shimmer wave):
+
+![signature](https://raw.githubusercontent.com/geojoseph19/progz/main/docs/gifs/signature.gif)
+
+The rest of the `progz.presets` namespace (`presets.ASCII`, `presets.BLOCKS`, `presets.MINIMAL`, `presets.DETAILED`, `presets.RAINBOW`), then the numeric readouts (`PERCENT`, `COUNT`, `RATE`, `ETA`, `ELAPSED`):
 
 ![presets](https://raw.githubusercontent.com/geojoseph19/progz/main/docs/gifs/presets.gif)
-
-Numeric readouts (`PERCENT`, `COUNT`, `RATE`, `ETA`, `ELAPSED`):
-
-![numbers](https://raw.githubusercontent.com/geojoseph19/progz/main/docs/gifs/numbers.gif)
 
 More recordings, including indeterminate mode and `bar.write()`, are in `examples/` and `docs/tapes/`.
 

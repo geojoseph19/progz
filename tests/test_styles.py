@@ -2,7 +2,7 @@
 
 import pytest
 
-from progz.presets import ASCII, BLOCKS, DETAILED, MINIMAL, RAINBOW, SHIMMER
+from progz.presets import ASCII, BLOCKS, DETAILED, EMBER, MINIMAL, RAINBOW, SHIMMER
 from progz.styles import Component, Style
 
 
@@ -124,7 +124,7 @@ class TestLayout:
 
 class TestStylePresets:
     def test_all_presets_are_style_instances(self):
-        for preset in (SHIMMER, ASCII, BLOCKS, MINIMAL, DETAILED, RAINBOW):
+        for preset in (SHIMMER, ASCII, BLOCKS, MINIMAL, DETAILED, RAINBOW, EMBER):
             assert isinstance(preset, Style)
 
     def test_presets_are_distinct(self):
@@ -154,6 +154,12 @@ class TestStylePresets:
         assert RAINBOW.interpolate is True
         assert RAINBOW.color_by_position is True
         assert len(RAINBOW.color_stops) >= 5
+
+    def test_ember_brand_gradient(self):
+        assert EMBER.interpolate is True
+        assert EMBER.color_by_position is True
+        assert EMBER.color_stops[0][1] == (120, 30, 0)
+        assert EMBER.color_stops[-1][1] == (255, 232, 170)
 
     def test_block_chars_default_empty(self):
         assert Style().block_chars == ()

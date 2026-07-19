@@ -1,11 +1,10 @@
-"""Built-in presets, one after another."""
+"""Built-in presets, one after another. See signature.py for EMBER and SHIMMER."""
 
 import time
 
 from progz import ProgressBar, presets
 
 for name, style in (
-    ("SHIMMER", presets.SHIMMER),
     ("ASCII", presets.ASCII),
     ("BLOCKS", presets.BLOCKS),
     ("MINIMAL", presets.MINIMAL),
