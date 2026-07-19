@@ -2,7 +2,7 @@
 
 All notable changes to progz are documented here.
 
-## [Unreleased]
+## [2.1.0] - 2026-07-19
 
 ### Added
 - `EMBER` preset: the brand banner as a bar. A molten gradient painted across the fill, cooling from deep ember red through orange and amber to a hot white-gold core, over a dark warm track.
