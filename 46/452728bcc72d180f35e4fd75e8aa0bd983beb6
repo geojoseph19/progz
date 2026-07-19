@@ -1,0 +1,19 @@
+README.md
+  s_73f573c1045d8e::t_7ddaa165c085c4 6-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "46452728bcc72d180f35e4fd75e8aa0bd983beb6",
+  "prompts": {},
+  "sessions": {
+    "s_73f573c1045d8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c33695a-675a-44a5-bed3-24b6441d0be0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
