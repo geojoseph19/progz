@@ -1,0 +1,21 @@
+CHANGELOG.md
+  s_30befec5618f93::t_b05061eadaba8c 5
+pyproject.toml
+  s_30befec5618f93::t_d4e329075e1002 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "f4060b4b22abf3ce5e155757a91cdafb095b3361",
+  "prompts": {},
+  "sessions": {
+    "s_30befec5618f93": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3bf17dba-7bde-4986-a786-21d266dd5406",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "geojoseph19 <geojofficial@gmail.com>"
+    }
+  }
+}
